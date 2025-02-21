@@ -3,7 +3,7 @@
 
 <template>
     <header>
-        <h1>NewsToday</h1>
+        <h1>NewsDaily</h1>
         <div class="menu">
             <div>
             <input type="text" name="search" id="search" placeholder="Search">

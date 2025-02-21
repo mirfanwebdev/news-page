@@ -4,32 +4,27 @@ defineProps({
         type: Number,
         default: 3
     },
-    shape: {
-        type: String,
-        default: 'rect'
-    },
     showText: {
         type: Boolean,
         default: false
-    },
+    }
 });
 </script>
 
 <template>
-    <div class="skeleton-container">
+    <div v-if="showText" class="skeleton-container">
         <div v-for="n in count" :key="n" class="skeleton-item">
-            <div v-if="shape === 'circle'" class="skeleton-circle"></div>
-            <div v-else class="skeleton-rect"></div>
-            <div v-if="showText" class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
         </div>
     </div>
+    <div v-else class="skeleton-item skeleton-rect"></div>
 </template>
 
 <style scoped>
-.skeleton-contaier {
+.skeleton-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.25rem;
     width: 100%;
 }
 
@@ -43,17 +38,9 @@ defineProps({
     position: relative;
 }
 
-.skeleton-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ddd;
-    margin-right: 10px;
-}
-
 .skeleton-rect {
     width: 100%;
-    height: 20px;
+    height: 100%;
     background-color: #ddd;
 }
 
@@ -61,7 +48,6 @@ defineProps({
     width: 100%;
     height: 16px;
     background-color: #ddd;
-    margin-left: 10px;
 }
 
 /* Animation */
