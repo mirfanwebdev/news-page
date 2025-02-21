@@ -2,7 +2,7 @@
 defineProps({
     count: {
         type: Number,
-        default: 1
+        default: 3
     },
     shape: {
         type: String,
@@ -30,6 +30,7 @@ defineProps({
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
 }
 
 .skeleton-item {

@@ -3,19 +3,22 @@
 
 <template>
     <header>
-        <div>
+        <h1>NewsToday</h1>
+        <div class="menu">
+            <div>
             <input type="text" name="search" id="search" placeholder="Search">
         </div>
-        <p>Simpan</p>
+        <div>simpan</div>
+        </div>
     </header>
 </template>
 
 <style scoped>
 header {
     display: flex;
-    flex-direction: row-reverse;
-    gap: 1rem;
+    justify-content: space-between;
     align-items: center;
+    width: 75vw;
 }
 input {
     border: 1px solid #ccc;
@@ -25,5 +28,11 @@ input {
 input:focus,
 input:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 4rem;
 }
 </style>
