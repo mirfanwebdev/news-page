@@ -75,4 +75,24 @@ defineProps({
         transform: translateX(100%);
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    .skeleton-item {
+        background-color: #333;
+    }
+    .skeleton-rect {
+        background-color: #555;
+    }
+    .skeleton-text {
+        background-color: #777;
+    }
+    .skeleton-item::before {
+        background-image: linear-gradient(
+            to right,
+            #333,
+            #444,
+            #333
+        );
+    }
+}
 </style>

@@ -1,30 +1,20 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/Header.vue';
 import NewsContainer from './components/NewsContainer.vue';
-import NewsItem from './components/NewsItem.vue';
-import Skeleton from './components/Skeleton.vue';
+import { onMounted } from 'vue';
+// import { fetchNews } from './utils/api';
+
+onMounted(() => {
+  // console.log(fetchNews({ endpoint: '/top-headlines' }));
+});
 </script>
 
 <template>
   <Header />
   <NewsContainer />
-  <!-- <NewsItem /> -->
-   <!-- <Skeleton /> -->
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
+
+
 <style scoped>
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-} */
 </style>
