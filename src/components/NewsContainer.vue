@@ -1,20 +1,15 @@
 <script setup>
-import { ref, onMounted } from 'vue';
 import Skeleton from './Skeleton.vue';
-import { getHeadlines } from '../utils/api';
 import { formatDate } from '../utils/format';
 
-const news = ref([]);
-const isLoading = ref(true);
-
-onMounted(async () => {
-    try {
-        const { articles } = await getHeadlines({ endpoint: '/top-headlines' });
-        news.value = articles;
-    } catch (error) {
-        console.error(error);
-    } finally {
-        isLoading.value = false;
+defineProps({
+    news: {
+        type: Array,
+        required: true
+    },
+    isLoading: {
+        type: Boolean,
+        required: true
     }
 });
 

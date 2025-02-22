@@ -1,13 +1,7 @@
 const baseUrl = import.meta.env.VITE_BASE_API_URL;
 const apiKey = import.meta.env.VITE_API_KEY;
 
-const fetchNews = async ({
-  endpoint,
-  params = {
-    country: "us",
-    pageSize: 10,
-  },
-}) => {
+const fetchNews = async ({ endpoint, params = {} }) => {
   // api url endpoint
   const url = new URL(`${baseUrl}${endpoint}`);
 
@@ -33,5 +27,15 @@ const fetchNews = async ({
 };
 
 export const getHeadlines = () => {
-  return fetchNews({ endpoint: "/top-headlines" });
+  return fetchNews({
+    endpoint: "/top-headlines",
+    params: { country: "us", pageSize: 10 },
+  });
+};
+
+export const getSearch = (query) => {
+  return fetchNews({
+    endpoint: "/everything",
+    params: { q: query, pageSize: 10 },
+  });
 };
