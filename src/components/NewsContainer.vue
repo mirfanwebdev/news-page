@@ -1,13 +1,47 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import Skeleton from './Skeleton.vue';
+import { getHeadlines } from '../utils/api';
+
+const news = ref([]);
+const isLoading = ref(true);
+
+onMounted(async () => {
+    try {
+        const { articles } = await getHeadlines({ endpoint: '/top-headlines' });
+        news.value = articles;
+    } catch (error) {
+        console.error(error);
+    } finally {
+        isLoading.value = false;
+    }
+    
+});
+
 </script>
 
 <template>
     <div class="news-container">
-        <template v-for="n in 10" :key="n">
+        <template v-if="isLoading" v-for="n in 10" :key="n">
             <div class="news-item">
                 <div class="news-image"><Skeleton /></div>
                 <Skeleton showText :count="3" />
+            </div>
+        </template>
+
+        <template v-else>
+            <div class="news-item" v-for="article in news" :key="article.url">
+                <div class="news-image">
+                    <img v-if="article.urlToImage" :src="article.urlToImage" alt="article.title" class="news-image">
+                    <img v-else src="https://placehold.co/600x400?text=No+Image" alt="no-image" class="news-image">
+                </div>
+                <div class="news-content">
+                    <h2 class="limited">{{ article.title }}</h2>
+                <p>{{ article.source.name }} | <span>{{ article.author }}</span></p>
+                <p>{{ article.publishedAt }}</p>
+                <p class="limited">{{ article.description }}</p>
+                <a :href="article.url" target="_blank">Read more</a>
+                </div>
             </div>
         </template>
     </div>
@@ -37,10 +71,30 @@ import Skeleton from './Skeleton.vue';
     grid-row: span 2;
 }
 
+.news-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
 .news-image {
     width: 100%;
     min-height: 100px;
     flex: 1 1 0;
+}
+
+.limited {
+  display: -webkit-box; 
+  line-clamp: 2;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 </style>

@@ -14,11 +14,13 @@ const fetchNews = async ({
   Object.entries(params).forEach(([key, value]) => {
     url.searchParams.append(key, value);
   });
-  url.searchParams.append("apiKey", apiKey);
 
   // option
   const options = {
     method: "GET",
+    headers: {
+      "X-Api-Key": apiKey,
+    },
   };
 
   try {
