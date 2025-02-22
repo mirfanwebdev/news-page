@@ -1,9 +1,18 @@
 <script setup>
 import Skeleton from './Skeleton.vue';
-import { useNews } from '../composables/useNews';
 import { formatDate } from '../utils/format';
 
-const { news, isLoading } = useNews();
+defineProps({
+    news: {
+        type: Array,
+        required: true
+    },
+    isLoading: {
+        type: Boolean,
+        required: true
+    }
+});
+
 </script>
 
 <template>

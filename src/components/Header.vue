@@ -1,14 +1,35 @@
 <script setup>
+defineProps({
+    modelValue: {
+        type: String,
+    }
+});
+
+const emit = defineEmits(['update:modelValue', 'search']);
+
+const updateQuery = (event) => {
+    emit('update:modelValue', event.target.value);
+}
+const searchNews = () => {
+    emit('search');
+};
+
 </script>
 
 <template>
     <header>
         <h1>NewsDaily</h1>
         <div class="menu">
-            <div>
-            <input type="text" name="search" id="search" placeholder="Search">
-        </div>
-        <div>simpan</div>
+            <div class="search">
+                <input
+                :value="modelValue"
+                @input="updateQuery"
+                @keyup.enter="searchNews"
+                type="text"
+                >
+                <button @click="searchNews">Search</button>
+            </div>
+            <div>simpan</div>
         </div>
     </header>
 </template>
@@ -19,6 +40,10 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 75vw;
+}
+.search {
+    display: flex;
+    gap: 0.5rem;
 }
 input {
     border: 1px solid #ccc;

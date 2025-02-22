@@ -1,17 +1,15 @@
 <script setup>
 import Header from './components/Header.vue';
 import NewsContainer from './components/NewsContainer.vue';
-import { onMounted } from 'vue';
-// import { fetchNews } from './utils/api';
+import { useNews } from './composables/useNews';
 
-onMounted(() => {
-  // console.log(fetchNews({ endpoint: '/top-headlines' }));
-});
+const { news, isLoading, searchQuery,searchNews } = useNews();
+
 </script>
 
 <template>
-  <Header />
-  <NewsContainer />
+  <Header v-model="searchQuery" @search="searchNews" />
+  <NewsContainer :news="news" :isLoading="isLoading" />
 </template>
 
 

@@ -1,4 +1,4 @@
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, onUpdated } from "vue";
 import { getHeadlines, getSearch } from "../utils/api";
 
 export function useNews(initialQuery = "") {
@@ -9,7 +9,7 @@ export function useNews(initialQuery = "") {
   onMounted(async () => {
     isLoading.value = true;
     try {
-      const { articles } = await getHeadlines({ endpoint: "/top-headlines" });
+      const { articles } = await getHeadlines();
       news.value = articles;
     } catch (error) {
       console.error(error);
@@ -17,6 +17,10 @@ export function useNews(initialQuery = "") {
       isLoading.value = false;
     }
   });
+
+  // onUpdated(() => {
+  //   searchNews();
+  // });
 
   async function searchNews() {
     isLoading.value = true;
@@ -30,19 +34,10 @@ export function useNews(initialQuery = "") {
     }
   }
 
-  watch(searchQuery, (newQuery) => {
-    clearTimeout(timeout);
-
-    const timeout = setTimeout(() => {
-      if (newQuery) {
-        searchNews();
-      }
-    }, 500);
-  });
-
   return {
     news,
     searchQuery,
     isLoading,
+    searchNews,
   };
 }
