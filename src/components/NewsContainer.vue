@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import Skeleton from './Skeleton.vue';
 import { getHeadlines } from '../utils/api';
+import { formatDate } from '../utils/format';
 
 const news = ref([]);
 const isLoading = ref(true);
@@ -15,7 +16,6 @@ onMounted(async () => {
     } finally {
         isLoading.value = false;
     }
-    
 });
 
 </script>
@@ -37,8 +37,8 @@ onMounted(async () => {
                 </div>
                 <div class="news-content">
                     <h2 class="limited">{{ article.title }}</h2>
-                <p>{{ article.source.name }} | <span>{{ article.author }}</span></p>
-                <p>{{ article.publishedAt }}</p>
+                <p class="author">{{ article.source.name }} | <span>{{ article.author }}</span></p>
+                <p class="date">{{ formatDate(article.publishedAt) }}</p>
                 <p class="limited">{{ article.description }}</p>
                 <a :href="article.url" target="_blank">Read more</a>
                 </div>
@@ -89,6 +89,16 @@ onMounted(async () => {
   -webkit-line-clamp: 2; 
   -webkit-box-orient: vertical; 
   overflow: hidden; 
+}
+
+.author {
+    font-weight: bold;
+    color: orange;
+}
+
+.author,
+.date {
+    font-size: 0.8rem;
 }
 
 .news-image img {
