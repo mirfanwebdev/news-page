@@ -1,6 +1,7 @@
 <script setup>
 import Skeleton from './Skeleton.vue';
 import { formatDate } from '../utils/format';
+import { saveNews } from '../utils/local';
 
 defineProps({
     news: {
@@ -35,7 +36,7 @@ defineProps({
                 <p class="author">{{ article.source.name }} | <span>{{ article.author }}</span></p>
                 <p class="date">{{ formatDate(article.publishedAt) }}</p>
                 <p class="limited">{{ article.description }}</p>
-                <a :href="article.url" target="_blank">Read more</a>
+                <a :href="article.url" target="_blank" @click="saveNews(article)" >Read more</a>
                 </div>
             </div>
         </template>
