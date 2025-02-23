@@ -1,5 +1,43 @@
-# Vue 3 + Vite
+# NewsDaily - News Web Application
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+VueJS web application integrated with NewsAPI.org
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Screenshot
+
+![screenshot](./public/news-screenshot.PNG)
+
+## Techstack
+
+- VueJS
+- Vue-router
+- NewsAPI
+- Vite
+- Fontawesome icon
+
+## Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/mirfanwebdev/news-page.git
+cd news-page
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Setup environtment
+
+```ini
+VITE_BASE_API_URL=the_news_api_url
+VITE_API_KEY=your_api_key
+```
+
+### Run development server
+
+```bash
+npm run dev
+```
