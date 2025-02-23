@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 defineProps({
     modelValue: {
         type: String,
@@ -29,7 +31,7 @@ const searchNews = () => {
                 >
                 <button @click="searchNews">Search</button>
             </div>
-            <div>simpan</div>
+            <RouterLink to="/save"><div>Simpan</div></RouterLink>
         </div>
     </header>
 </template>

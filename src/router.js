@@ -1,10 +1,14 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 import HomeVIew from "./views/HomeVIew.vue";
+import SaveView from "./views/SaveView.vue";
 
-const routes = [{ path: "/", component: HomeVIew }];
+const routes = [
+  { path: "/", component: HomeVIew },
+  { path: "/save", component: SaveView },
+];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
 
