@@ -28,8 +28,8 @@ defineProps({
         <template v-else>
             <div class="news-item" v-for="article in news" :key="article.url">
                 <div class="news-image">
-                    <img v-if="article.urlToImage" :src="article.urlToImage" alt="article.title" class="news-image">
-                    <img v-else src="https://placehold.co/600x400?text=No+Image" alt="no-image" class="news-image">
+                    <img v-if="article.urlToImage" :src="article.urlToImage" alt="article.title">
+                    <img v-else src="https://placehold.co/600x400?text=No+Image" alt="no-image">
                 </div>
                 <div class="news-content">
                     <h2 class="limited">{{ article.title }}</h2>
@@ -97,7 +97,7 @@ defineProps({
     font-size: 0.8rem;
 }
 
-.news-image img {
+.news-image > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
