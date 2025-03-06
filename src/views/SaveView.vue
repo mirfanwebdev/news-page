@@ -1,13 +1,15 @@
 <script setup>
 import Header from '../components/Header.vue';
-import SaveNewsList from '../components/SaveNewsList.vue';
+import NewsList from '../components/NewsListContainer.vue';
+import { getSavedNews } from '../utils/local';
+
+const news = getSavedNews();
 </script>
 
 <template>
     <div class="save-view">
         <Header />
-    <SaveNewsList />
-
+        <NewsList title="Saved news" :news="news" />
     </div>
     </template>
 
